@@ -636,14 +636,12 @@ only screen and (   min--moz-device-pixel-ratio: 2),
 only screen and (     -o-min-device-pixel-ratio: 2/1),
 only screen and (        min-device-pixel-ratio: 2),
 only screen and (                min-resolution: 2dppx) { 
-
 	.pic:before,
 	.pic-after:after,
 	.pic-lg:before,
 	.pic-xl:before,
 	.pic-xxl:before,
 	.sprite { background-image: url(img/sprite-main@2x.png); }
-	
 }
 
 /* CSS END */
