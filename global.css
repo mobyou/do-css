@@ -132,6 +132,7 @@ mutable*/
 .bicol>*:first-child { padding-left:0; padding-bottom:0; width:3%; }
 .bicol>*:first-child>img { vertical-align:top; }
 .bicol.middle>*{ vertical-align:middle; }
+.bicol.bottom>*{ vertical-align:bottom; }
 
 /* Linebloc (IE8+) (IE7+ with span childs)
 HTML usage : .linebloc>div+div+div or ul.linebloc>li+li+li
@@ -139,7 +140,9 @@ mutable*/
 .linebloc>* { display: inline-block; vertical-align:baseline; }
 .linebloc.top>* { display: inline-block; vertical-align:top; }
 .linebloc.middle>*{ vertical-align:middle; }
-.linebloc.middle img { display:block; }
+.linebloc.bottom>*{ vertical-align:bottom; }
+.linebloc.middle img, .linebloc.bottom img { display:block; }
+
 
 /* Tribloc (IE7+)
 HTML usage : .tribloc>span.left+div+span.right
@@ -166,12 +169,14 @@ mutable*/
 .row { display:table; table-layout:fixed; width:100%; }
 .row>* { display: table-cell; vertical-align: top; }
 .row.middle>*, .row>.middle { vertical-align: middle; }
+.row.bottom>*, .row>.bottom { vertical-align: bottom; }
 
 /* Real table (IE7+)
 HTML usage : table.table>tr>td+td...
 mutable*/
 .table { display:table; table-layout:fixed; width:100%; }
 .table.middle td, .table td.middle { vertical-align: middle; }
+.table.bottom td, .table td.bottom { vertical-align: bottom; }
 
 /* Grid (IE7+) classic 12 columns fluid grid
 HTML usage : div.grid>div.col-6+div.col-3+div.col-3
