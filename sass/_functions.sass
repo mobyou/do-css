@@ -1,0 +1,6 @@
+// [calculateRem | Convert px to rem]
+// @param  {[int]} $size [Size in pixel to convert in rem]
+// @return {[int]}       [Size in rem]
+@function calculateRem($size)
+    $remSize: $size / $basePX
+    @return $remSize * 1rem

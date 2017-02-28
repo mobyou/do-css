@@ -1,0 +1,183 @@
+
+@if $export-grid
+    /** Grid (IE7+) classic 12 columns fluid grid */
+    .grid
+        margin: 0 auto
+        &.no-margin
+            margin: 0
+        &::before, &::after
+            content: ''
+            display: table
+
+        &::after
+            clear: both
+
+        *
+            zoom: 1
+            position: relative
+
+        & > *
+            float: left
+
+        & > * > img.full
+            display: block
+            width: 100%
+
+        & >.last, &.snap>.last
+            // IE7 fix
+            float:none
+            overflow:hidden
+            width: auto
+
+        &.snap>:last-child
+            float:none
+            display:table-cell
+            overflow:visible
+            width: 10000px
+            // modern browsers decimal fix when needed !
+
+        @for $i from 1 through length($grid-columns-sizes)
+            $column-size: nth($grid-columns-sizes, $i)
+            & > .col-#{$i}
+                width: #{$column-size}
+
+
+        &.gutter-sm
+            margin-left: $gutter-small / 2 * -1
+            margin-right: $gutter-small / 2 * -1
+        & > .gutter-sm
+            padding-left: $gutter-small / 2
+            padding-right: $gutter-small / 2
+
+        &.gutter
+            margin-left: $gutter-regular / 2 * -1
+            margin-right: $gutter-regular / 2 * -1
+        & > .gutter
+            padding-left: $gutter-regular / 2
+            padding-right: $gutter-regular / 2
+
+        &.gutter-lg
+            margin-left: $gutter-large / 2 * -1
+            margin-right: $gutter-large / 2 * -1
+        & > .gutter-lg
+            padding-left: $gutter-large / 2
+            padding-right: $gutter-large / 2
+
+        &.gutter-xl
+            margin-left: $gutter-extra-large / 2 * -1
+            margin-right: $gutter-extra-large / 2 * -1
+        & > .gutter-xl
+            padding-left: $gutter-extra-large / 2
+            padding-right: $gutter-extra-large / 2
+
+// Semantic - {Grid mixin for semantic build}
+// Usage :
+// .mySelector
+//    +grid()
+
+// $margin {string} [Margin, example: 10px 5px 10px 50px]
+// $columns {bool} [Export columns or not]
+// $gutters {bool} [Export gutters or not]
+=grid($margin: 0 auto, $columns: true, $gutters: false)
+    @if $margin == 'nomargin'
+        margin: 0
+    @else
+        margin: $margin
+
+    &::before, &::after
+        content: ''
+        display: table
+
+    &::after
+        clear: both
+
+    *
+        zoom: 1
+        position: relative
+
+    & > *
+        float: left
+
+    & > * > img.full
+        display: block
+        width: 100%
+
+    & >.last, &.snap>.last
+        // IE7 fix
+        float:none
+        overflow:hidden
+        width: auto
+
+    &.snap>:last-child
+        float:none
+        display:table-cell
+        overflow:visible
+        width: 10000px
+        // modern browsers decimal fix when needed !
+
+    @if $columns
+        @for $i from 1 through length($grid-columns-sizes)
+            $column-size: nth($grid-columns-sizes, $i)
+            & > .col-#{$i}
+                width: #{$column-size}
+
+    @if $gutters
+        &.gutter-sm
+            margin-left: $gutter-small / 2 * -1
+            margin-right: $gutter-small / 2 * -1
+        & > .gutter-sm
+            padding-left: $gutter-small / 2
+            padding-right: $gutter-small / 2
+
+        &.gutter
+            margin-left: $gutter-regular / 2 * -1
+            margin-right: $gutter-regular / 2 * -1
+        & > .gutter
+            padding-left: $gutter-regular / 2
+            padding-right: $gutter-regular / 2
+
+        &.gutter-lg
+            margin-left: $gutter-large / 2 * -1
+            margin-right: $gutter-large / 2 * -1
+        & > .gutter-lg
+            padding-left: $gutter-large / 2
+            padding-right: $gutter-large / 2
+
+        &.gutter-xl
+            margin-left: $gutter-extra-large / 2 * -1
+            margin-right: $gutter-extra-large / 2 * -1
+        & > .gutter-xl
+            padding-left: $gutter-extra-large / 2
+            padding-right: $gutter-extra-large / 2
+
+
+
+// Semantic - [Grid column mixin for semantic build] NB : Grid base context is 12
+// Usage :
+// .mySelector
+//    +grid-col(8)
+=grid-column($width: 1)
+    @if $width == 1
+        width: 8.33333%
+    @else if $width == 2
+        width: 16.66667%
+    @else if $width == 3
+        width: 25%
+    @else if $width == 4
+        width: 33.33333%
+    @else if $width == 5
+        width: 41.66667%
+    @else if $width == 6
+        width: 50%
+    @else if $width == 7
+        width: 58.33333%
+    @else if $width == 8
+        width: 66.66667%
+    @else if $width == 9
+        width: 75%
+    @else if $width == 10
+        width: 83.33333%
+    @else if $width == 11
+        width: 91.66667%
+    @else if $width == 12
+        width: 100%
