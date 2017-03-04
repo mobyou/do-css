@@ -1,128 +1,129 @@
-// Legacy Blocks
-/* Blocks gutters */
-.bibloc>*, .bicol>*
-    padding-left: 20px
-    /* @gutter-width */
-.bloc .right
-    margin-left: 20px
-    /* @gutter-width */
-.bloc .left
-    margin-right: 20px
-    /* @gutter-width */
-.bibloc, .bicol, .panel, .grid
-    margin-bottom: 20px
-    /* @gutter-height */
-.bloc .left, .bloc .right
-    margin-bottom: 10px
-    /* @gutter-height/2 */
+@if $legacy
+    // Legacy Blocks
+    /* Blocks gutters */
+    .bibloc>*, .bicol>*
+        padding-left: 20px
+        /* @gutter-width */
+    .bloc .right
+        margin-left: 20px
+        /* @gutter-width */
+    .bloc .left
+        margin-right: 20px
+        /* @gutter-width */
+    .bibloc, .bicol, .panel, .grid
+        margin-bottom: 20px
+        /* @gutter-height */
+    .bloc .left, .bloc .right
+        margin-bottom: 10px
+        /* @gutter-height/2 */
 
-/* Bloc (IE7+) HTML usage : div.bloc>div+div...*/
-.bloc
-    &:before, &:after
-        content: ''
+    /* Bloc (IE7+) HTML usage : div.bloc>div+div...*/
+    .bloc
+        &:before, &:after
+            content: ''
+            display: table
+        &:after
+            clear: both
+        *
+            zoom: 1
+            position: relative
+
+
+    /* Bibloc (IE7+) layout for 1 fixed floated block on the left and flexible block (with a context formatting context) on the right HTML usage : div.bibloc>div+div or div.bibloc>img+div */
+
+    .bibloc
+        &:before, &:after
+            content: ''
+            display: table
+        &:after
+            clear: both
+        *
+            zoom: 1
+            position: relative
+        & > *
+            overflow: hidden
+        & > *:first-child
+            float: left
+            overflow: visible
+            padding-left: 0
+        & > *:first-child img
+            display: block
+
+    /* Bicol (IE8+) layout for 2 fluids cols with no overflow issue on overlays HTML usage : div.bicol>div+div */
+    .bicol
         display: table
-    &:after
-        clear: both
-    *
-        zoom: 1
         position: relative
+        width: 100%
+        table-layout: auto
+        & > *
+            display: table-cell
+            vertical-align: top
+            width:auto
+        &.right-media > *
+            width: 3%
+            padding-right: 0
+            padding-bottom: 0
+        &.right-media > *:first-child
+            width: auto
+        & > *:first-child
+            padding-left: 0
+            padding-bottom: 0
+            width: 3%
+        & > *:first-child > img
+            vertical-align: top
+        &.middle > *
+            vertical-align: middle
+        &.bottom > *
+            vertical-align: bottom
 
+    /* Linebloc (IE8+) (IE7+ with span childs) HTML usage : .linebloc>div+div+div or ul.linebloc>li+li+li */
+    .linebloc
+        & > *
+            display: inline-block
+            vertical-align: baseline
+        &.top > *
+            vertical-align: top
+        &.middle > *
+            vertical-align: middle
+        &.bottom > *
+            vertical-align: bottom
+        &.middle img, &.bottom img
+            display: block
 
-/* Bibloc (IE7+) layout for 1 fixed floated block on the left and flexible block (with a context formatting context) on the right HTML usage : div.bibloc>div+div or div.bibloc>img+div */
+    /* Tribloc (IE7+) HTML usage : .tribloc>span.left+div+span.right*/
+    .tribloc
+        &:before, &:after
+            content: ''
+            display: table
+        &:after
+            clear: both
+        *
+            zoom : 1
+            position: relative
 
-.bibloc
-    &:before, &:after
-        content: ''
-        display: table
-    &:after
-        clear: both
-    *
-        zoom: 1
-        position: relative
-    & > *
-        overflow: hidden
-    & > *:first-child
-        float: left
-        overflow: visible
-        padding-left: 0
-    & > *:first-child img
-        display: block
+        & > *
+            float: left
+            width: 33%
+            text-align: center
+        & > .first
+            text-align: left
+        & > .last
+            float: right
+            text-align: right
 
-/* Bicol (IE8+) layout for 2 fluids cols with no overflow issue on overlays HTML usage : div.bicol>div+div */
-.bicol
-    display: table
-    position: relative
-    width: 100%
-    table-layout: auto
-    & > *
-        display: table-cell
-        vertical-align: top
-        width:auto
-    &.right-media > *
-        width: 3%
-        padding-right: 0
-        padding-bottom: 0
-    &.right-media > *:first-child
-        width: auto
-    & > *:first-child
-        padding-left: 0
-        padding-bottom: 0
-        width: 3%
-    & > *:first-child > img
-        vertical-align: top
-    &.middle > *
-        vertical-align: middle
-    &.bottom > *
-        vertical-align: bottom
-
-/* Linebloc (IE8+) (IE7+ with span childs) HTML usage : .linebloc>div+div+div or ul.linebloc>li+li+li */
-.linebloc
-    & > *
-        display: inline-block
-        vertical-align: baseline
-    &.top > *
-        vertical-align: top
-    &.middle > *
-        vertical-align: middle
-    &.bottom > *
-        vertical-align: bottom
-    &.middle img, &.bottom img
-        display: block
-
-/* Tribloc (IE7+) HTML usage : .tribloc>span.left+div+span.right*/
-.tribloc
-    &:before, &:after
-        content: ''
-        display: table
-    &:after
-        clear: both
-    *
-        zoom : 1
-        position: relative
-
-    & > *
-        float: left
-        width: 33%
-        text-align: center
-    & > .first
-        text-align: left
-    & > .last
-        float: right
-        text-align: right
-
-/* Bifloat (IE7+) HTML usage : .bifloat>div+div*/
-.bifloat
-    &:before, &:after
-        content: ''
-        display: table
-    &:after
-        clear: both
-    *
-        zoom: 1
-        position: relative
-    & > *
-        float: right
-        text-align: right
-    & > *:first-child
-        float: left
-        text-align: left
+    /* Bifloat (IE7+) HTML usage : .bifloat>div+div*/
+    .bifloat
+        &:before, &:after
+            content: ''
+            display: table
+        &:after
+            clear: both
+        *
+            zoom: 1
+            position: relative
+        & > *
+            float: right
+            text-align: right
+        & > *:first-child
+            float: left
+            text-align: left
