@@ -1,0 +1,11 @@
+// Breakpoint Mixin - Simple version
+// NB: Mobile First
+// Usage:
+// .mySelector
+//     +breakpoint(600px)
+//         content....
+// Return :
+// @media screen and (min-width: 600px){.mySelector{content...}};
+=breakpoint($value: 340px, $media: 'screen')
+    @media #{$media} and (min-width: #{$value})
+        @content

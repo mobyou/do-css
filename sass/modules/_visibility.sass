@@ -1,0 +1,65 @@
+// Export rules
+@if $export-visibility
+    .hidden
+        display: none !important
+        visibility: hidden
+
+    .invisible
+        visibility: hidden
+
+    // Hide only visually, but have it available for screenreaders: h5bp.com/v
+    .visuallyhidden
+        border: 0
+        clip: rect(0000)
+        height: 1px
+        overflow: hidden
+        position: absolute
+        width: 1px
+        margin: -1px
+        padding: 0
+
+        // Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p
+        &.focusable:active, &.focusable:focus
+            clip: auto
+            height: auto
+            overflow: visible
+            position: static
+            width: auto
+            margin: 0
+
+    .visible
+        display: block !important
+        visibility: visible
+
+
+// Semantic build - Mixins
+=hidden()
+    display: none !important
+    visibility: hidden
+
+=invisible()
+    visibility: hidden
+
+// Hide only visually, but have it available for screenreaders: h5bp.com/v
+=visuallyhidden()
+    border: 0
+    clip: rect(0000)
+    height: 1px
+    overflow: hidden
+    position: absolute
+    width: 1px
+    margin: -1px
+    padding: 0
+
+    // Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p
+    &.focusable:active, &.focusable:focus
+        clip: auto
+        height: auto
+        overflow: visible
+        position: static
+        width: auto
+        margin: 0
+
+=visible()
+    display: block !important
+    visibility: visible

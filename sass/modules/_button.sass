@@ -1,0 +1,19 @@
+// Button Mixin
+// $block @type {bool} [Block or inline-block]
+// $bkg @type {string} [Background color]
+// $color @type {string} [Text color]
+// $textalign @type {string} [Text align...]
+=button($block: false, $bkg: #e9e9e9, $color: #444, $textalign: center)
+    @if $block
+        display: block
+    @else
+        display: inline-block
+    padding: .5rem 1.5rem
+
+    background: $bkg
+
+    +fontSize(16px)
+    text-align: $textalign
+    color: $color
+
+    border: none

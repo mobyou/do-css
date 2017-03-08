@@ -1,0 +1,35 @@
+@if $export-offset
+    /** Offset */
+    @for $i from 1 through length($offset-sizes)
+        $offset: nth($offset-sizes, $i)
+        offset-#{$i}
+            margin-left: #{$offset}
+
+
+// Semantic building - Offset mixin
+// Usage:
+// .mySelector
+//    +offset($width[{int}])
+=offset($width)
+    @if $width == 1
+        margin-left: 8.33333%
+    @else if $width == 2
+        margin-left: 16.66667%
+    @else if $width == 3
+        margin-left: 25%
+    @else if $width == 4
+        margin-left: 33.33333%
+    @else if $width == 5
+        margin-left: 41.66667%
+    @else if $width == 6
+        margin-left: 50%
+    @else if $width == 7
+        margin-left: 58.33333%
+    @else if $width == 8
+        margin-left: 66.66667%
+    @else if $width == 9
+        margin-left: 75%
+    @else if $width == 10
+        margin-left: 83.33333%
+    @else if $width == 11
+        margin-left: 91.66667%

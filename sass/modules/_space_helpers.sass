@@ -1,0 +1,46 @@
+=ma($margin:'')
+    margin: unquote($margin)
+
+=mt($margin:'')
+    margin-top: unquote($margin)
+
+=mr($margin:'')
+    margin-right: unquote($margin)
+
+=mb($margin:'')
+    margin-bottom: unquote($margin)
+
+=ml($margin:'')
+    margin-left: unquote($margin)
+
+=pa($padding:'')
+    padding: unquote($padding)
+
+=pt($padding:'')
+    padding-top: unquote($padding)
+
+=pr($padding:'')
+    padding-right: unquote($padding)
+
+=pb($padding:'')
+    padding-bottom: unquote($padding)
+
+=pl($padding:'')
+    padding-left: unquote($padding)
+
+// Absolute center, vertical and horizontal
+// Usage:
+// .mySelector
+//     +absolute_center(.mySelectorChild)
+//     
+//     .mySelectorChild
+//         background: red
+//     etc...
+=absolute_center($child: 'div')
+    position: relative
+    #{$child}
+        position: absolute
+        display: block
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)

@@ -1,0 +1,164 @@
+/**
+ * Do-CSS Typography basics - 1rem = 10px
+ */
+body
+    font-family: $font-family-base
+    color:  #000
+    line-height:  1.47
+    -webkit-font-smoothing:  antialiased
+
+a
+    color:  #000
+    text-decoration:  none
+
+p
+    line-height:  1.5
+
+p a
+    text-decoration:  underline
+
+    &:hover, &:focus
+        color:  #000
+        text-decoration:  underline
+
+ol, ul
+    list-style:  none
+
+ul li a:hover
+    text-decoration:  underline
+
+table
+    border-collapse:  collapse
+    border-spacing:  0
+
+
+/* titles */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, h7, .h7
+    font-family:  $font-family-base
+    font-weight:  normal
+
+h1, .h1
+    font-size: $h1
+    line-height: 1.2
+    margin-top: 1.5em
+
+h2, .h2
+    font-size: $h2
+    line-height: 1.3333
+    margin-top: 1.5em
+
+h3, .h3
+    font-size: $h3
+    line-height: 1.7143
+    margin-top: 1.5em
+
+h4, .h4
+    font-size: $h4
+    line-height: 1.0909
+    margin-top: 1.5em
+
+h5, .h5
+    font-size: $h5
+    line-height: 1.3333
+    margin-top: 1.5em
+
+h6, .h6
+    font-size: $h6
+
+h7, .h7
+    font-size: $h7
+
+h8, .h8
+    font-size: $h8
+
+h9, .h9
+    font-size: $h9
+
+// Others mixins
+
+// Export typography rules
+@if $export-typography
+    .cut
+        word-wrap: break-word
+        -webkit-hyphens: auto
+        -moz-hyphens: auto
+        -ms-hyphens: auto
+        -o-hyphens: auto
+        hyphens: auto
+
+    .nocut
+        word-wrap: normal
+        -webkit-hyphens: none
+        -moz-hyphens: none
+        -ms-hyphens: none
+        -o-hyphens: none
+        hyphens: none
+
+    .ellipsis
+        white-space: nowrap
+        overflow: hidden
+        -o-text-overflow: ellipsis
+        text-overflow: ellipsis
+
+    .caps
+        text-transform: uppercase
+
+//  Upper
+=upper()
+    text-transform: uppercase
+
+// cut Mixin - Semantic build
+=cut()
+    word-wrap: break-word
+    -webkit-hyphens: auto
+    -moz-hyphens: auto
+    -ms-hyphens: auto
+    -o-hyphens: auto
+    hyphens: auto
+
+// nocut Mixin - Semantic build
+=nocut()
+    word-wrap: normal
+    -webkit-hyphens: none
+    -moz-hyphens: none
+    -ms-hyphens: none
+    -o-hyphens: none
+    hyphens: none
+
+// ellipsis Mixin - Semantic build
+=ellipsis()
+    white-space: nowrap
+    overflow: hidden
+    -o-text-overflow: ellipsis
+    text-overflow: ellipsis
+
+// Si $ie est à true, IE est supporté, si $ie est à false IE n'est pas supporté
+=fontSize($size: 16px, $ie: false)
+    @if ($ie == true)
+        font-size: $size
+        font-size: calculateRem($size)
+    @else
+        font-size: calculateRem($size)
+
+// [font Mixin font shorthand]
+// @param  {[bool]} $ie                   [Si true IE est supporté, si false IE n'est pas supporté]
+// @param  {[int/string]} $font-weight   [Font-weight]
+// @param  {[int]} $font-size            [Font-size en PX, convertit en REM]
+// @param  {[int]} $line                 [Line Height, en PX convertit en REM]
+// @param  {[string]} $family            [Font-family]
+// @param  {[string]} $other             [Font-family fallback]
+// ----------
+// Comment l'utiliser :
+// +font(false, font-weight, font-size, line-height, font-family First, font-family Fallback)
+// Si ie est à true, IE est supporté, sinon c'est la version font shorthand qui est renvoyé
+=font($font-weight: 'normal', $font-size: 16px, $line: 16px, $family: sans-serif, $other: sans-serif, $ie: false)
+        @if ($ie == true)
+            // IE Fallback - Conditional
+            font-size: $font-size
+            line-height: $line
+            font-size: calculateRem($font-size)
+            line-height: calculateRem($line)
+            font-weight: $font-weight
+            font-family: $family, $other
+        @else
+            font: $font-weight #{calculateRem($font-size)}/#{calculateRem($line)} $family, $other

@@ -1,0 +1,17 @@
+// Row (IE8+)
+
+// Semantic - {Row mixin for semantic build}
+// Usage :
+// .mySelector
+//    +row()
+=row()
+    display: table
+    table-layout: fixed
+    width: 100%
+    & > *
+        display: table-cell
+        vertical-align: top
+    &.middle>*, & > .middle
+        vertical-align: middle
+    &.bottom>*, & > .bottom
+        vertical-align: bottom
